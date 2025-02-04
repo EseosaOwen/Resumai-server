@@ -15,14 +15,14 @@ const resume = require("./models/resume");
 const app = express();
 
 
-
+app.set("trust proxy", 1);
 app.use(
   cors({
     origin: "https://resumai-app.netlify.app",
     credentials: true,
   })
 );
-app.set("trust proxy", 1);
+
 app.use(express.json());
 app.use(cookieParser());
 
