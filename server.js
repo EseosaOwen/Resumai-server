@@ -16,7 +16,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "http://localhost:5174",
+    origin: "https://resumai-app.netlify.app",
     credentials: true,
   })
 );
@@ -38,7 +38,7 @@ async function DBconnect() {
 DBconnect();
 
 app.get("/", async (req, res) => {
-  return res.status("Welcome to our API endpoint for Resumai");
+  return res.send("Welcome to our API endpoint for Resumai");
 });
 
 // Register User
