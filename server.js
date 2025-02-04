@@ -37,6 +37,10 @@ async function DBconnect() {
 
 DBconnect();
 
+app.get("/", async (req, res) => {
+  return res.status("Welcome to our API endpoint for Resumai");
+});
+
 // Register User
 app.post("/register", async (req, res) => {
   const email = req.body.email;
