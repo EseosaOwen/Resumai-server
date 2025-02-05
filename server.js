@@ -120,14 +120,14 @@ app.post("/login", async (req, res) => {
         httpOnly: true,
         secure: true,
         sameSite: "none",
-        expires: expiresIn,
+        maxAge: expiresIn,
       });
       res.json({ message: "Login Successful" });
     } else {
       res.status(400).send("Invalid Email or Password");
     }
   } catch (error) {
-    res.json({ message: "login failed" });
+    res.json({ message: "login failed" }, error);
   }
 });
 
