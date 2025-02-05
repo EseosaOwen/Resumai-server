@@ -14,7 +14,6 @@ const cors = require("cors");
 const resume = require("./models/resume");
 const app = express();
 
-
 app.set("trust proxy", true);
 app.use(
   cors({
@@ -110,14 +109,18 @@ app.post("/login", async (req, res) => {
       console.log("Password Comparison is same");
       const token = jwt.sign(
         { id: emailExists._id },
-        process.env.JWT_SECRET_KEY,
-        { expiresIn: "1h" }
+        process.env.JWT_SECRET_KEY
       );
 
       console.log("Password Comparison is same /after token");
 
+      const expiresIn = 7 * 24 * 60 * 60 * 1000;
+
       res.cookie("tokenCookie", token, {
         httpOnly: true,
+        secure: true,
+        sameSite: "none",
+        expires: expiresIn,
       });
       res.json({ message: "Login Successful" });
     } else {
